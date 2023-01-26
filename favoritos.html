@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Detalhes - Projeto_PWC_IAPSI</title>
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/css/navbar.css">
+    <link rel="stylesheet" href="../styles/css/site.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
+   
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(18,173,222);">
+        <div class="container"><span style="font-size:18px;">Detalhes</span><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-4">
+            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" style="color: rgb(255,255,255,0.9); font-size:18px;">Weather</a></li>           
+                </ul>
+            </div>
+            <form method="post">
+                <input type="text" placeholder="Escreva uma cidade">
+                <input type="submit" value="Submit">
+            </form>
+            <div class="dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown"><i class="fa-solid fa-bars"></i></a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="../html/favoritos.html">Favoritos</a><button onclick="converter_graus()">Converter</button></div>
+        </div>
+    </nav>
+</header>
+<h3>A Meteorologia em :</h3>
+<br>
+<table class="table" id="WEATHER">
+    <tr>
+        <th></th>
+        <th>
+            <i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura-->
+        </th>
+        <th>
+            <i class="fa-solid fa-raindrops"></i><!--Chuva-->
+        </th>
+        <th>
+            <i class="fa-solid fa-wind"></i><!--Vento-->
+        </th>
+        <th>
+            <i class="fa-solid fa-cloud"></i><!--Nuvens-->
+        </th>
+        <th>
+            <i class="fa-sharp fa-solid fa-droplet-percent"></i><!--Humidade-->
+        </th>
+        <th>
+            <button onclick="favorito()"><i id="star" class="fa-regular fa-star"></i></button>
+        </th>
+    </tr>
+    <tr>
+        <td>ola</td>  
+        <td>
+            
+        </td>
+       <tr>
+        <td>ola</td>  
+       </tr> 
+        <td>
+
+        </td>
+        <td>
+            
+        </td>
+        <td>
+           
+        </td>
+        <td>
+                
+        </td>
+        <td>
+                
+        </td>
+    </tr>
+</table>
+
+
+
+    <script src="../styles/js/bootstrap.min.js"></script>
+    <script src="../styles/js/site.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js%22%3E"></script>
+    <script src="https://kit.fontawesome.com/9ce735a876.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
