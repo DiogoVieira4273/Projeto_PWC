@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Página Inicial - Projeto_PWC_IAPSI</title>
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/css/navbar.css">
+    <link rel="stylesheet" href="../styles/css/site.css">
+    <link rel="stylesheet" href="../styles/css/Footer-Clean.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(18,173,222);">
+            <div class="container"><a ><span
+                    class="navbar-toggler" data-bs-target="#navcol-4">
+                    <span class="visually-hidden">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link active"
+                                style="color: rgb(255,255,255,0.9); font-size:18px;">Weather</a></li>
+                    </ul>
+                </div>
+                <a class="detalhes" href="../html/favoritos.html"><span
+                        style="font-size:18px;">Favoritos</a></span><button data-bs-toggle="collapse"
+                    class="navbar-toggler" data-bs-target="#navcol-4"></a>
+                    <button onclick="celsius_para_fahrenheit()" class="btn btn-primary" type="button" id="converter"
+                        style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                        para Fahrenheit</button>
+                    <button onclick="fahrenheit_para_celsius()" id="converter" class="btn btn-primary" type="button"
+                        id="converter"
+                        style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                        para Celsius</button>
+                    <form method="get" action="../html/detalhes.html">
+                        <input type="text" placeholder="Escreva uma cidade" name="cidade_pesquisa">
+                        <input type="submit" value="Submit">
+                        <script>
+                            localStorage.setItem("cidade_pesquisa", "Submit");
+                        </script>
+                    </form>   
+        </nav>
+    </header>
+    <br><br><br>
+
+    <table class="table" id="WEATHER">
+        <tr>
+
+            <th><i class="fa-solid fa-location-dot"></i><!--Localização--></th>
+            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+            <th><i class="fa-regular fa-star"></i></th>
+        </tr>
+        <tr>
+
+            <td>
+                <h4 id="local1"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp1"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva1"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento1"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens1"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito1()"><i id="fav1" class="fa-regular fa-star"></i></button></td>
+        </tr>
+        <tr>
+
+            <td>
+                <h4 id="local2"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp2"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva2"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento2"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens2"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito2()"><i id="fav2" class="fa-regular fa-star"></i></button></td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="local3"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp3"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva3"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento3"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens3"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito3()"><i id="fav3" class="fa-regular fa-star"></i></button></td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="local4"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp4"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva4"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento4"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens4"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito4()"><i id="fav4" class="fa-regular fa-star"></i></button></td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="local5"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp5"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva5"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento5"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens5"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito5()"><i id="fav5" class="fa-regular fa-star"></i></button></td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="local6"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp6"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva6"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento6"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens6"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="favorito6()"><i id="fav6" class="fa-regular fa-star"></i></button></td>
+
+        </tr>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="../styles/js/bootstrap.min.js"></script>
+    <script src="../styles/js/site.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://kit.fontawesome.com/9ce735a876.js" crossorigin="anonymous"></script>
+</body>
+<br><br><br><br><br><br>
+<footer class="footer-clean">
+    <hr>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;font-family: 'Source Sans Pro', sans-serif;">Trabalho realizado por: </h3>
+                <ul>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Diogo Vieira, 2220872<br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Hugo Dias, 2220853<br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Tiago Silva, 2220864</li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Curso:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação de Sistemas de Informação</p>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Disciplina:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação para Web - Cliente</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
