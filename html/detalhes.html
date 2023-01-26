@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Titulo da pagina e importacao de css-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Detalhes - Projeto_PWC_IAPSI</title>
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/css/navbar.css">
+    <link rel="stylesheet" href="../styles/css/site.css">
+    <link rel="stylesheet" href="../styles/css/Footer-Clean.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+</head>
+<!--Corpo da pagina-->
+
+<body>
+    <!--Cabecalho-->
+    <header>
+        <nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(18,173,222);">
+            <div class="container"><span style="font-size:18px;"></span><button data-bs-toggle="collapse"
+                    class="navbar-toggler" data-bs-target="#navcol-4">
+                    <span class="visually-hidden">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                    <ul class="navbar-nav me-auto">
+                        <div class="container"><a class="weather" href="../html/index.html"><span
+                                    style="font-size:18px;">Weather</a></span><button data-bs-toggle="collapse"
+                                class="navbar-toggler" data-bs-target="#navcol-4">
+
+                    </ul>
+                    <ul class="navbar-nav me-auto2">
+                        <!--Botao para buscar a informacao pela localizacao atual-->
+                        <i class="fa-solid fa-location-dot" style="color: rgb(0,0,0);"
+                            onclick="buscar_localizacao_atual()"></i>
+                        <p id="detalhes"></p>
+                    </ul>
+                </div>
+                <a class="detalhes" href="../html/favoritos.html"><span
+                        style="font-size:18px;">Favoritos</a></span><button data-bs-toggle="collapse"
+                    class="navbar-toggler" data-bs-target="#navcol-4"></a>
+                    <!--Botao para converter para fahrenheit-->
+                    <button onclick="celsius_para_fahrenheit_detalhes()" class="btn btn-primary" type="button"
+                        id="converter"
+                        style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                        para Fahrenheit</button>
+                    <!--Botao para converter para celsius-->
+                    <button onclick="fahrenheit_para_celsius_detalhes()" id="converter" class="btn btn-primary"
+                        type="button" id="converter"
+                        style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                        para Celsius</button>
+                    <form method="get" action="../html/detalhes.html">
+                        <input type="text" placeholder="Escreva uma cidade" name="cidade_pesquisa">
+                        <input type="submit" value="Submit">
+                    </form>
+                    <script>
+                        localStorage.setItem("cidade_pesquisa", "Submit"); //Guardar o nome da cidade em LocalStorage
+                    </script>
+                    <script>
+
+                    </script>
+        </nav>
+    </header>
+    <br>
+    <h3>A Meteorologia em : <h3 id="cidade_texto"></h3>
+    </h3>
+    <br>
+    <!--TABELA de Detalhes-->
+    <table class="table" id="WEATHER_DETALHES">
+        <tr>
+
+            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+            <th>Latitude<!--Latitude--></th>
+            <th>Longitude<!--Longitude--></th>
+            <th>3/3 horas</th>
+            <th><i class="fa-regular fa-star"></i></th>
+        </tr>
+        <tr>
+            <td>
+                <h4 id="tempo_detalhado"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_detalhado"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_detalhado"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                    id="nuvens_detalhado"><!--Nuvens--></img></td>
+            <td>
+                <h4 id="latitude"></h4><!--Latitude-->
+            </td>
+            <td>
+                <h4 id="longitude"></h4><!--Longitude-->
+            </td>
+            <td>
+                <button type="button" class="abrir" onclick="abrir_forecast()">Forecast de 3 em 3 horas</button>
+                <div class="content">
+                    <table class="table" id="WEATHER_DETALHES">
+                        <tr>
+                            <th><i class="fa-regular fa-calendar-days"></i></th>
+                            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+                            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+                            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+                            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast1"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast1"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast1"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast1"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast1"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast2"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast2"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast2"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast2"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast2"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast3"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast3"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast3"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast3"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast3"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td><button onclick="favorito_detalhe()"><i id="fav1" class="fa-regular fa-star"></i></button></td>
+        </tr>
+    </table>
+    <br>
+    <h4>Forecast:</h4>
+    <br>
+    <!--TABELA de forecast-->
+    <table class="table" id="WEATHER_DETALHES">
+        <tr>
+            <th><i class="fa-regular fa-calendar-days"></i></th>
+            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+            <th><!--Collapsible com data 3 horas--></th>
+
+        </tr>
+
+        <tr>
+            <td>
+                <h4 id="dia_forecast4"><!--Dia--></h4>
+            </td>
+            <td>
+                <h4 id="tempo_forecast4"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_forecast4"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_forecast4"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                    id="nuvens_forecast4"><!--Nuvens--></img>
+            </td>
+
+            <td>
+                <button type="button" class="abrir" onclick="abrir_forecast()">Forecast de 3 em 3 horas</button>
+                <div class="content">
+                    <table class="table" id="WEATHER_DETALHES">
+                        <tr>
+                            <th><i class="fa-regular fa-calendar-days"></i></th>
+                            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+                            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+                            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+                            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast4_1"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast4_1"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast4_1"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast4_1"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast4_1"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast4_2"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast4_2"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast4_2"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast4_2"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast4_2"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast4_3"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast4_3"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast4_3"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast4_3"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast4_3"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="dia_forecast5"><!--Dia--></h4>
+            </td>
+            <td>
+                <h4 id="tempo_forecast5"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_forecast5"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_forecast5"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                    id="nuvens_forecast5"><!--Nuvens--></img>
+            </td>
+
+            <td>
+                <button type="button" class="abrir" onclick="abrir_forecast()">Forecast de 3 em 3 horas</button>
+                <div class="content">
+                    <table class="table" id="WEATHER_DETALHES">
+                        <tr>
+                            <th><i class="fa-regular fa-calendar-days"></i></th>
+                            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+                            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+                            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+                            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast5_1"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast5_1"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast5_1"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast5_1"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast5_1"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast5_2"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast5_2"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast5_2"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast5_2"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast5_2"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast5_3"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast5_3"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast5_3"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast5_3"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast5_3"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="dia_forecast6"><!--Dia--></h4>
+            </td>
+            <td>
+                <h4 id="tempo_forecast6"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_forecast6"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_forecast6"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                    id="nuvens_forecast6"><!--Nuvens--></img>
+            </td>
+
+            <td>
+                <button type="button" class="abrir" onclick="abrir_forecast()">Forecast de 3 em 3 horas</button>
+                <div class="content">
+                    <table class="table" id="WEATHER_DETALHES">
+                        <tr>
+                            <th><i class="fa-regular fa-calendar-days"></i></th>
+                            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+                            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+                            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+                            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast6_1"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast6_1"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast6_1"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast6_1"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast6_1"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast6_2"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast6_2"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast6_2"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast6_2"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast6_2"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast6_3"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast6_3"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast6_3"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast6_3"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast6_3"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <h4 id="dia_forecast7"><!--Dia--></h4>
+            </td>
+            <td>
+                <h4 id="tempo_forecast7"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_forecast7"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_forecast7"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                    id="nuvens_forecast7"><!--Nuvens--></img>
+            </td>
+
+            <td>
+                <button type="button" class="abrir" onclick="abrir_forecast()">Forecast de 3 em 3 horas</button>
+                <div class="content">
+                    <table class="table" id="WEATHER_DETALHES">
+                        <tr>
+                            <th><i class="fa-regular fa-calendar-days"></i></th>
+                            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+                            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+                            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+                            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast7_1"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast7_1"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast7_1"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast7_1"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast7_1"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast7_2"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast7_2"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast7_2"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast7_2"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast7_2"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4 id="dia_forecast7_3"><!--Dia--></h4>
+                            </td>
+                            <td>
+                                <h4 id="tempo_forecast7_3"><!--Temperatura--></h4>
+                            </td>
+                            <td>
+                                <h4 id="chuva_forecast7_3"><!--Chuva--></h4>
+                            </td>
+                            <td>
+                                <h4 id="vento_forecast7_3"><!--Vento--></h4>
+                            </td>
+                            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50"
+                                    id="nuvens_forecast7_3"><!--Nuvens--></img>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+    <!--Importacao de javascript-->
+    <script src="../styles/js/bootstrap.min.js"></script>
+    <script src="../styles/js/site.js"></script>
+    <script src="../styles/js/detalhes.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js%22%3E"></script>
+    <script src="https://kit.fontawesome.com/9ce735a876.js" crossorigin="anonymous"></script>
+</body>
+<br><br><br><br><br><br><br><br><br><br>~
+<!--Rodape-->
+<footer class="footer-clean">
+    <hr>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;font-family: 'Source Sans Pro', sans-serif;">Trabalho
+                    realizado por: </h3>
+                <ul>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Diogo Vieira, 2220872<br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Hugo Dias, 2220853<br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Tiago Silva, 2220864</li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Curso:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação de Sistemas de Informação</p>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Disciplina:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação para Web - Cliente</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
