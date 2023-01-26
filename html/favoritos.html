@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Favoritos - Projeto_PWC_IAPSI</title>
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/css/navbar.css">
+    <link rel="stylesheet" href="../styles/css/site.css">
+    <link rel="stylesheet" href="../styles/css/Footer-Clean.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(18,173,222);">
+            <div class="container"><span style="font-size:18px;"></span><button data-bs-toggle="collapse"
+                    class="navbar-toggler" data-bs-target="#navcol-4">
+                    <span class="visually-hidden">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                    <ul class="navbar-nav me-auto">
+                        <div class="container"><a class="weather" href="../html/index.html"><span
+                                    style="font-size:18px;">Weather</a></span><button data-bs-toggle="collapse"
+                                class="navbar-toggler" data-bs-target="#navcol-4">
+                    </ul>
+                </div>
+                <a class="navbar-toggler" data-bs-target="#navcol-4"></a>
+                <button onclick="celsius_para_fahrenheit_favoritos()" class="btn btn-primary" type="button"
+                    id="converter"
+                    style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                    para Fahrenheit</button>
+                <button onclick="fahrenheit_para_celsius_favoritos()" id="converter" class="btn btn-primary"
+                    type="button" id="converter"
+                    style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;border-color: rgb(255, 255, 255);background: rgb(255, 255, 255);color: rgb(0, 0, 0);">Converter
+                    para Celsius</button>
+                <form method="get" action="../html/detalhes.html">
+                    <input type="text" placeholder="Escreva uma cidade" name="cidade_pesquisa">
+                    <input type="submit" value="Submit">
+                </form>
+        </nav>
+    </header>
+    <br>
+    <table class="table" id="WEATHER_FAVORITOS">
+        <tr>
+
+            <th><i class="fa-solid fa-location-dot"></i><!--Localização--></th>
+            <th><i class="fa-solid fa-temperature-three-quarters"></i><!--Temperatura--></th>
+            <th><i class="fa-solid fa-cloud-rain"></i><!--Chuva--></th>
+            <th><i class="fa-solid fa-wind"></i><!--Vento--></th>
+            <th><i class="fa-solid fa-cloud"></i><!--Nuvens--></th>
+            <th><i class="fa-regular fa-star"></i></th>
+        </tr>
+        <tr>
+
+            <td>
+                <h4 id="local_fav1"> <!--Localização--></h4>
+            </td>
+            <td>
+                <h4 id="temp_fav1"><!--Temperatura--></h4>
+            </td>
+            <td>
+                <h4 id="chuva_fav1"><!--Chuva--></h4>
+            </td>
+            <td>
+                <h4 id="vento_fav1"><!--Vento--></h4>
+            </td>
+            <td><img src="../imgs/sign-red-error-icon-1.png" width="50" height="50" id="nuvens_fav1"><!--Nuvens--></img>
+            </td>
+            <td><button onclick="remover_favorito1()"><i id="fav1" class="fa-regular fa-star"></i></button></td>
+        </tr>
+    </table>
+
+    <script src="../styles/js/bootstrap.min.js"></script>
+    <script src="../styles/js/site.js"></script>
+    <script src="../styles/js/favoritos.js"></script>
+    <script src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js%22%3E"></script>
+    <script src="https://kit.fontawesome.com/9ce735a876.js" crossorigin="anonymous"></script>
+</body>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer class="footer-clean">
+    <hr>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;font-family: 'Source Sans Pro', sans-serif;">Trabalho
+                    realizado por: </h3>
+                <ul>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Diogo Vieira, <br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Hugo Dias, 2220853<br></li>
+                    <li style="color: rgb(0,0,0);font-size: 18px;">Tiago Silva, 2220864</li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Curso:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação de Sistemas de Informação</p>
+            </div>
+            <div class="col-sm-4 col-md-3 item">
+                <h3 style="color: rgb(0,0,0);font-size: 20px;">Disciplina:</h3>
+                <p style="color: rgb(0,0,0); font-size: 18px">Programação para Web - Cliente</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
